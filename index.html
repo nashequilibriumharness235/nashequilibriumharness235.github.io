@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Measure whether ChatGPT, Claude, Gemini and Perplexity recommend your brand - and fix the reasons they don't. A free Agent Skill for AEO/GEO audits. No account, no database, Python stdlib only.">
+    <meta name="keywords" content="aeo,agent-skills,ai-visibility,answer-engine-optimization,brand-monitoring,chatgpt,claude-skill,generative-engine-optimization,geo,llm,llms-txt,perplexity,seo,share-of-voice">
+    <meta name="author" content="ai-visibility-skill">
+    <title>ai-visibility-skill - AI Visibility for Your Brand</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f4f7fc;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a2634;
+            padding: 2rem 1.5rem;
+        }
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem 2.5rem 3rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0b1a2a;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #15304c;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e5edf5;
+            padding-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f3b58;
+            margin-top: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+        p, li {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+        }
+        ul {
+            margin-left: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .btn-download {
+            display: inline-block;
+            background: linear-gradient(145deg, #1a73e8, #0b5fc0);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.4rem;
+            padding: 0.9rem 2.8rem;
+            border-radius: 50px;
+            box-shadow: 0 6px 18px rgba(26, 115, 232, 0.35);
+            text-align: center;
+            margin: 1.8rem 0 1rem;
+            transition: transform 0.1s ease, box-shadow 0.15s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(26, 115, 232, 0.45);
+            text-decoration: none;
+            color: #fff;
+        }
+        .badge-area {
+            text-align: center;
+            margin: 1.8rem 0 2.2rem;
+        }
+        .badge-area a {
+            background: #28a745;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 0.75rem 2.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 14px rgba(40, 167, 69, 0.3);
+            display: inline-block;
+            transition: 0.1s ease;
+        }
+        .badge-area a:hover {
+            background: #1e8c3a;
+            box-shadow: 0 6px 18px rgba(40, 167, 69, 0.4);
+            text-decoration: none;
+        }
+        .code-block {
+            background: #f0f4fa;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 0.1rem 0.1rem;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #dce6ef;
+            margin: 2.2rem 0;
+        }
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .feature-card {
+            background: #f8faff;
+            border-radius: 14px;
+            padding: 1.2rem 1.4rem;
+            flex: 1 1 180px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+        .feature-card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.8rem; }
+            .container { padding: 1.5rem 1.2rem; }
+            h1 { font-size: 1.7rem; }
+            .btn-download { font-size: 1.1rem; padding: 0.7rem 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1>🔍 ai-visibility-skill - Know If AI Recommends Your Brand</h1>
+
+    <p style="font-size: 1.1rem; margin-top: 0.3rem; color: #3a5774;">Measure whether ChatGPT, Claude, Gemini and Perplexity recommend your brand — and fix the reasons they don't. A free Agent Skill for AEO/GEO audits. No account, no database, Python stdlib only.</p>
+
+    <div class="badge-area">
+        <a href="https://github.com/nashequilibriumharness235/ai-visibility-skill/releases">⬇️ Download ai-visibility-skill</a>
+    </div>
+
+    <h2>📦 What Is This?</h2>
+    <p>ai-visibility-skill is a free, no‑setup tool that checks if the biggest AI chatbots — ChatGPT, Claude, Gemini, and Perplexity — mention your brand when asked about your industry or topic. It then shows you exactly what those AIs say, so you can improve your brand's <strong>share of voice</strong> in generative search results. Think of it as an SEO audit, but for the AI era.</p>
+
+    <p>You don't need an account, a database, or any programming experience. Just download, run, and follow the on‑screen prompts. Everything runs on your own computer using only built‑in Python libraries.</p>
+
+    <h2>🚀 Getting Started</h2>
+    <h3>Step 1: Download the tool</h3>
+    <p>Visit this link to download the application: <a href="https://github.com/nashequilibriumharness235/ai-visibility-skill/releases">github.com/nashequilibriumharness235/ai-visibility-skill/releases</a></p>
+    <p>Click the green “Download” button on that page. The file you get is a self‑contained archive — no installer needed.</p>
+
+    <h3>Step 2: Extract the files</h3>
+    <p>On Windows, right‑click the downloaded <code class="code-block">.zip</code> file and choose <strong>“Extract All…”</strong>. Pick a folder (e.g., <em>Desktop\ai-visibility</em>) and click <strong>Extract</strong>.</p>
+
+    <h3>Step 3: Run the program</h3>
+    <p>Open the extracted folder. Double‑click <code class="code-block">ai-visibility-skill.exe</code> (or <code class="code-block">run.bat</code>). A terminal window will open — that's normal. Follow the simple menu to:</p>
+    <ul>
+        <li>Enter your brand name and topic keywords.</li>
+        <li>Let the tool query ChatGPT, Claude, Gemini, and Perplexity (via their free interfaces).</li>
+        <li>View a clean report of which AI mentioned your brand and what they said.</li>
+    </ul>
+
+    <p><strong>No Python installation is required.</strong> The executable includes everything.</p>
+
+    <h2>✨ Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card"><strong>🤖 Multi‑AI Scan</strong> Checks ChatGPT, Claude, Gemini &amp; Perplexity in one run.</div>
+        <div class="feature-card"><strong>📊 Share of Voice Report</strong> See exactly how often your brand appears vs. competitors.</div>
+        <div class="feature-card"><strong>🛠️ Fix Suggestions</strong> Get actionable tips to improve your AI visibility.</div>
+        <div class="feature-card"><strong>🔒 Private &amp; Free</strong> No accounts, no tracking, no cloud. Runs 100% locally.</div>
+        <div class="feature-card"><strong>⚡ Zero Setup</strong> Download &amp; run — no Python, no database, no config.</div>
+        <div class="feature-card"><strong>📁 LLMs.txt Support</strong> Built‑in integration for the latest AEO/GEO standards.</div>
+    </div>
+
+    <h2>🎯 Who Is This For?</h2>
+    <ul>
+        <li><strong>Brand managers</strong> who want to know how AI models perceive their brand.</li>
+        <li><strong>SEO / GEO specialists</strong> performing answer engine optimization audits.</li>
+        <li><strong>Marketers</strong> tracking share of voice in generative search.</li>
+        <li><strong>Small business owners</strong> who can't afford expensive enterprise monitoring tools.</li>
+    </ul>
+
+    <h2>📈 Example Use Cases</h2>
+    <ul>
+        <li>Type “best project management software” and see if Asana, Trello, or your tool is mentioned.</li>
+        <li>Check if ChatGPT recommends your local restaurant when someone asks “best pizza in Chicago”.</li>
+        <li>Run weekly audits to track how your brand's AI visibility changes after content updates.</li>
+    </ul>
+
+    <h2>⚙️ How It Works (Simple Version)</h2>
+    <p>The tool sends your brand and topic to each AI's public interface (just like you would in a browser), collects the responses, and analyzes them for brand mentions, sentiment, and positioning. All processing is done on your machine — no data leaves your computer except the search queries.</p>
+
+    <h2>💡 Tips for Best Results</h2>
+    <ul>
+        <li>Use specific brand names and niche topics.</li>
+        <li>Run the tool multiple times over several days for trend data.</li>
+        <li>Combine results with your own content strategy to improve mentions.</li>
+    </ul>
+
+    <hr>
+
+    <div style="text-align: center; margin: 2.5rem 0 1.5rem;">
+        <a href="https://github.com/nashequilibriumharness235/ai-visibility-skill/releases" class="btn-download">⬇️ Download Now — Free</a>
+        <p style="font-size: 0.9rem; color: #5f7d9a; margin-top: 0.6rem;">No sign‑up. No data collection. Windows only.</p>
+    </div>
+
+    <h2>📖 Frequently Asked Questions</h2>
+    <h3>Do I need to install Python?</h3>
+    <p>No. The downloadable file is a standalone executable that includes everything needed.</p>
+    <h3>Will this work on Mac or Linux?</h3>
+    <p>This version is packaged for Windows. For other platforms, you can run the Python script directly (see the repository source).</p>
+    <h3>Is my data safe?</h3>
+    <p>Yes. The tool makes the same queries you would make manually in a browser. It stores nothing permanently and doesn't send your data anywhere except to the AI services you query.</p>
+    <h3>How often should I run it?</h3>
+    <p>Once a week is a good starting point to monitor changes in AI recommendations.</p>
+
+    <hr>
+
+    <p style="font-size: 0.9rem; color: #5f7d9a; text-align: center; margin-top: 1.8rem;">Keywords: aeo, agent-skills, ai-visibility, answer-engine-optimization, brand-monitoring, chatgpt, claude-skill, generative-engine-optimization, geo, llm, llms-txt, perplexity, seo, share-of-voice</p>
+
+</div>
+</body>
+</html>
